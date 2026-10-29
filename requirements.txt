@@ -1,0 +1,9 @@
+python-jobspy
+ddgs
+beautifulsoup4
+requests
+google-genai
+pydantic
+gspread
+google-auth
+weasyprint
