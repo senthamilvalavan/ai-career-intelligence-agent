@@ -1,0 +1,56 @@
+name: Elisa AI Job Agent (Example Workflow)
+
+# This is an example workflow. To use this, configure your GitHub Secrets.
+on:
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+  schedule:
+    - cron: '30 3 * * *' # Runs automatically every day at 3:30 AM UTC (9:00 AM IST)
+
+permissions:
+  contents: write # Required to save generated PDFs back to the repository
+
+jobs:
+  hunt_and_tailor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install System Libraries for WeasyPrint PDF
+        run: sudo apt-get update && sudo apt-get install -y python3-pip python3-cffi python3-brotli libpango-1.0-0 libpangoft2-1.0-0
+
+      - name: Install Python Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run AI Agent Pipeline
+        env:
+          # Make sure to add these in your repository: Settings > Secrets and variables > Actions
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GOOGLE_CREDS_JSON: ${{ secrets.GOOGLE_CREDS_JSON }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python -u agent.py
+
+      - name: Save Generated PDFs and Cache to GitHub Repo
+        run: |
+          git config user.name "AI Job Agent"
+          git config user.email "bot@users.noreply.github.com"
+          git add resumes/ seen_jobs.json || true
+          git diff --staged --quiet || (git commit -m "📄 Auto-generated tailored resumes for $(TZ=Asia/Kolkata date +%d-%m-%Y)" && git pull --rebase origin main && git push)
+
+      - name: Zip ONLY Today's Resumes for 1-Click Download
+        run: |
+          TODAY_DIR=$(TZ=Asia/Kolkata date +%d-%m-%Y)
+          echo "TODAY_DIR=$TODAY_DIR" >> $GITHUB_ENV
+          mkdir -p "resumes/$TODAY_DIR"
+
+      - name: Upload Today's Resumes Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: resumes-${{ env.TODAY_DIR }}
+          path: resumes/${{ env.TODAY_DIR }}/
