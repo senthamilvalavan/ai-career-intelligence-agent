@@ -1,0 +1,51 @@
+{
+  "name": "YOUR NAME HERE",
+  "headline": "Junior Data Analyst | Python | SQL | Power BI",
+  "contact": "+91 XXXXXXXXXX | email@example.com | linkedin.com/in/username | github.com/username | portfolio.com",
+  "summary": "Detail-oriented Data Analyst with practical experience in data extraction, cleansing, and validation using SQL, Python, and Excel. Skilled in performing routine data quality checks and building automated reporting workflows.",
+  "skills": {
+    "Analytics & BI": "Power BI, Tableau (basic), Data Visualization, Dashboard Creation",
+    "Data & SQL": "SQL (Joins, CTEs, Window Functions), Data Cleaning, Data Extraction",
+    "Programming & Libraries": "Python, Pandas, NumPy, Scikit-learn",
+    "Tools": "Excel (VLOOKUP, Pivot Tables), Jupyter Notebook, Git"
+  },
+  "projects": [
+    {
+      "title": "1. Customer Behavior Analytics & Dashboard",
+      "tech": "Power BI, Advanced Excel",
+      "bullets": [
+        "Analyzed retail datasets to identify customer trends, patterns, and anomalies.",
+        "Designed interactive reports to track retention metrics and support business decisions."
+      ]
+    },
+    {
+      "title": "2. Explainable AI Classification Model",
+      "tech": "Python, Machine Learning",
+      "bullets": [
+        "Built an automated data pipeline to collect and preprocess large-scale datasets for model training.",
+        "Implemented data visualization techniques to communicate ML model decisions to non-technical stakeholders."
+      ]
+    },
+    {
+      "title": "3. Automated Web Scraping & Database Management",
+      "tech": "Python, SQL",
+      "bullets": [
+        "Created and managed a centralized SQL database to safely organize extracted web data.",
+        "Wrote Python scripts and SQL queries to ensure data consistency and automate daily reporting tasks."
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "role": "Data Analyst Intern | Tech Startup",
+      "duration": "Month YYYY - Month YYYY",
+      "bullets": [
+        "Collaborated with the development team to analyze internal datasets and identify business trends.",
+        "Created Power BI dashboards and Excel reports to track key performance metrics.",
+        "Assisted in solving business problems by analyzing data and providing actionable insights."
+      ]
+    }
+  ],
+  "education": "B.Tech in Information Technology | University Name | May 2026 | GPA: X.XX",
+  "certifications": "Certifications: Python for Data Science (Year) | Data Science Using R (Year)"
+}
